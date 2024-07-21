@@ -1,0 +1,24 @@
+7月15日：完成autoencoder、CNN自编码器、AVE的基线模型的实验
+
+7月30日：完成One-class SVM，SVDD的基线模型的实验，初步设计模型改进方案
+
+8月15日：完成模型改进方案的设计与实现
+
+8月30日：设计科技网NetFlow数据集的制作
+
+9月15日：完成科技网NetFlow数据集的制作与实验
+
+9月30日：完成论文第一章的全部工作
+
+10月-11月完成论文第二章的工作
+
+12月中期答辩
+
+
+真实网络环境无监督实验论文：https://ieeexplore.ieee.org/abstract/document/7937701
+
+netflow数据集无监督：
+https://academic.oup.com/jigpal/article/30/6/912/6534146?login=true#381208719
+https://dl.acm.org/doi/abs/10.1145/3385003.3410924#sec-citations
+https://link.springer.com/chapter/10.1007/978-3-030-03658-4_23
+https://ieeexplore.ieee.org/abstract/document/8802833

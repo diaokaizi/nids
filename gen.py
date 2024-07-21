@@ -62,12 +62,13 @@ def build_discriminator(input_dim):
     model.add(Dense(1, activation='sigmoid'))
     return model
 
+# 自定义GAN类
 class GAN(tf.keras.Model):
-    def __init__(self, generator, discriminator, latent_dim):
+    def __init__(self, generator, discriminator, input_dim):
         super(GAN, self).__init__()
         self.generator = generator
         self.discriminator = discriminator
-        self.latent_dim = latent_dim
+        self.input_dim = input_dim
         self.g_optimizer = Adam(learning_rate=0.0001)
         self.d_optimizer = Adam(learning_rate=0.0004)
         self.bce = tf.keras.losses.BinaryCrossentropy()
@@ -80,37 +81,40 @@ class GAN(tf.keras.Model):
     def train_step(self, real_data):
         batch_size = tf.shape(real_data)[0]
 
-        random_latent_vectors = tf.random.normal(shape=(batch_size, self.latent_dim))
-        generated_data = self.generator(random_latent_vectors)
-
-        combined_data = tf.concat([generated_data, real_data], axis=0)
-        labels = tf.concat([tf.ones((batch_size, 1)), tf.zeros((batch_size, 1))], axis=0)
-        labels += 0.05 * tf.random.uniform(tf.shape(labels))
+        # 训练判别器
+        generated_data = self.generator(real_data)
 
         with tf.GradientTape() as tape:
-            predictions = self.discriminator(combined_data)
-            d_loss = self.bce(labels, predictions)
+            predictions_on_real = self.discriminator(real_data)
+            predictions_on_fake = self.discriminator(generated_data)
+            d_loss_real = self.bce(tf.ones_like(predictions_on_real), predictions_on_real)
+            d_loss_fake = self.bce(tf.zeros_like(predictions_on_fake), predictions_on_fake)
+            d_loss = (d_loss_real + d_loss_fake) / 2
+
         grads = tape.gradient(d_loss, self.discriminator.trainable_variables)
         self.d_optimizer.apply_gradients(zip(grads, self.discriminator.trainable_variables))
 
-        misleading_labels = tf.zeros((batch_size, 1))
-
+        # 训练生成器
+        misleading_labels = tf.ones((batch_size, 1))
         with tf.GradientTape() as tape:
-            predictions = self.discriminator(self.generator(random_latent_vectors))
-            g_loss = self.bce(misleading_labels, predictions)
+            predictions_on_fake = self.discriminator(self.generator(real_data))
+            g_loss = self.bce(misleading_labels, predictions_on_fake)
+
         grads = tape.gradient(g_loss, self.generator.trainable_variables)
         self.g_optimizer.apply_gradients(zip(grads, self.generator.trainable_variables))
 
-        return {'d_loss': d_loss, 'g_loss': g_loss}
+        return {"d_loss": d_loss, "g_loss": g_loss}
     
     def call(self, inputs):
         return self.generator(inputs)
-    
+
+# 计算损失
 def calculate_loss(test_data, predictions):
     return np.mean(np.square(test_data - predictions), axis=1)
 
+# 给定阈值
 def give_threshold(model, method, val_data, y_val):
-    predictions = model.generator.predict(tf.random.normal(shape=(len(val_data), model.latent_dim)), verbose=0)
+    predictions = model.generator.predict(val_data, verbose=0)
     loss = calculate_loss(val_data, predictions)
 
     if method == 'ROC':
@@ -121,45 +125,47 @@ def give_threshold(model, method, val_data, y_val):
         precision, recall, thresholds = precision_recall_curve(y_val, loss)
         distance = np.sqrt((1-precision)**2 + (1-recall)**2)
         return thresholds[distance.argmin()]
-    
+
     return
 
+# 评估模型
 def evaluate(model, test_data, y_test, roc_threshold, pr_threshold):
-    predictions = model.generator.predict(tf.random.normal(shape=(len(test_data), model.latent_dim)), verbose=0)
+    predictions = model.generator.predict(test_data, verbose=0)
     loss = calculate_loss(test_data, predictions)
-    
+
     roc_result = loss > roc_threshold
     pr_result = loss > pr_threshold
 
     print('\tUSING ROC-CURVE & Youden:\n')
     print(f'\t\tAccuracy={accuracy_score(y_test, roc_result)}\n\t\tPrecision={precision_score(y_test, roc_result)}\n\t\tRecall={recall_score(y_test, roc_result)}\n\t\tF1={f1_score(y_test, roc_result)}\n')
     print('\tUSING PR-CURVE & Distance:\n')
-    print(f'\t\tAccuracy={accuracy_score(y_test, pr_result)}\n\t\tPrecision={precision_score(y_test, pr_result)}\n\t\tRecall={recall_score(y_test, pr_result)}\n\t\tF1={f1_score(y_test, roc_result)}\n')
+    print(f'\t\tAccuracy={accuracy_score(y_test, pr_result)}\n\t\tPrecision={precision_score(y_test, pr_result)}\n\t\tRecall={recall_score(y_test, pr_result)}\n\t\tF1={f1_score(y_test, pr_result)}\n')
 
+# 训练和测试GAN
 def fit_and_test_gan(name):
     print(f'Fitting and testing for {name}:')
     print('='*60 + '\n')
-    
+
     X_train = scaler.fit_transform(x_train[name])
     X_val = scaler.transform(x_val[name][0])
     X_test = scaler.transform(x_test[name][0])
-    
-    latent_dim = 10
-    generator = build_generator(latent_dim, X_train.shape[1])
-    discriminator = build_discriminator(X_train.shape[1])
-    gan = GAN(generator, discriminator, latent_dim)
+
+    input_dim = X_train.shape[1]
+    generator = build_generator(input_dim)
+    discriminator = build_discriminator(input_dim)
+    gan = GAN(generator, discriminator, input_dim)
     gan.compile()
 
-    epochs = 10000
+    epochs = 200
     batch_size = 128
     for epoch in range(epochs):
-        history = gan.fit(X_train, epochs=1, batch_size=batch_size, verbose = False)
-        
+        gan.fit(X_train, epochs=1, batch_size=batch_size)
+
         if epoch % 20 == 0:
             roc_threshold = give_threshold(gan, 'ROC', X_val, x_val[name][1])
             pr_threshold = give_threshold(gan, 'PR', X_val, x_val[name][1])
 
-            print(epoch, 'INTRA-DATASET EVALUATION:\n')
+            print('INTRA-DATASET EVALUATION:\n')
             evaluate(gan, X_test, x_test[name][1], roc_threshold, pr_threshold)
 
 print('TESTING WITH GAN:\n\n')

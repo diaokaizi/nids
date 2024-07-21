@@ -43,7 +43,7 @@ for key, value in datasets.items():
     del X_test
     gc.collect()
 
-def build_generator(latent_dim, output_dim):
+def build_generator(input_dim):
     model = tf.keras.Sequential()
     model.add(Input(shape=(latent_dim,)))
     model.add(Dense(8, activation='relu'))
@@ -51,7 +51,7 @@ def build_generator(latent_dim, output_dim):
     model.add(Dense(4, activation='relu'))
     model.add(Dense(6, activation='relu'))
     model.add(Dense(8, activation='relu'))
-    model.add(Dense(output_dim, activation='linear'))
+    model.add(Dense(input_dim, activation='linear'))
     return model
 
 def build_discriminator(input_dim):

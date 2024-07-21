@@ -1,0 +1,94 @@
+2024-07-21 18:12:52.149748: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+2024-07-21 18:12:52.255318: I tensorflow/core/util/port.cc:104] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-07-21 18:12:52.258650: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2024-07-21 18:12:52.258668: I tensorflow/compiler/xla/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2024-07-21 18:12:52.861022: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2024-07-21 18:12:52.861087: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2024-07-21 18:12:52.861094: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+Processing NF-UNSW-NB15
+====================
+
+TESTING WITH GAN:
+
+
+Fitting and testing for NF-UNSW-NB15:
+============================================================
+
+2024-07-21 18:12:54.411997: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2024-07-21 18:12:54.412031: W tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:265] failed call to cuInit: UNKNOWN ERROR (303)
+2024-07-21 18:12:54.412045: I tensorflow/compiler/xla/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (Ubuntu-2204): /proc/driver/nvidia/version does not exist
+2024-07-21 18:12:54.412231: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
+To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
+0 INTRA-DATASET EVALUATION:
+
+	USING ROC-CURVE & Youden:
+
+		Accuracy=0.8206448723690103
+		Precision=0.9779924852388621
+		Recall=0.8352051340820537
+		F1=0.9009766349363333
+
+	USING PR-CURVE & Distance:
+
+		Accuracy=0.9769368562472011
+		Precision=0.9769368562472011
+		Recall=1.0
+		F1=0.9009766349363333
+
+20 INTRA-DATASET EVALUATION:
+
+	USING ROC-CURVE & Youden:
+
+		Accuracy=0.8302731751007613
+		Precision=0.9772306063012973
+		Recall=0.8459775383910153
+		F1=0.9068796068796069
+
+	USING PR-CURVE & Distance:
+
+		Accuracy=0.9769368562472011
+		Precision=0.9769368562472011
+		Recall=1.0
+		F1=0.9068796068796069
+
+40 INTRA-DATASET EVALUATION:
+
+	USING ROC-CURVE & Youden:
+
+		Accuracy=0.6912225705329154
+		Precision=0.98005148005148
+		Recall=0.6981434792573917
+		F1=0.8154196225404899
+
+	USING PR-CURVE & Distance:
+
+		Accuracy=0.9769368562472011
+		Precision=0.9769368562472011
+		Recall=1.0
+		F1=0.8154196225404899
+
+Traceback (most recent call last):
+  File "/root/work/NIDS/gen.py", line 167, in <module>
+    fit_and_test_gan(dataKey)
+  File "/root/work/NIDS/gen.py", line 156, in fit_and_test_gan
+    history = gan.fit(X_train, epochs=1, batch_size=batch_size, verbose = False)
+  File "/usr/local/lib/python3.10/dist-packages/keras/utils/traceback_utils.py", line 65, in error_handler
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/keras/engine/training.py", line 1650, in fit
+    tmp_logs = self.train_function(iterator)
+  File "/usr/local/lib/python3.10/dist-packages/tensorflow/python/util/traceback_utils.py", line 150, in error_handler
+    return fn(*args, **kwargs)
+  File "/usr/local/lib/python3.10/dist-packages/tensorflow/python/eager/polymorphic_function/polymorphic_function.py", line 880, in __call__
+    result = self._call(*args, **kwds)
+  File "/usr/local/lib/python3.10/dist-packages/tensorflow/python/eager/polymorphic_function/polymorphic_function.py", line 912, in _call
+    return self._no_variable_creation_fn(*args, **kwds)  # pylint: disable=not-callable
+  File "/usr/local/lib/python3.10/dist-packages/tensorflow/python/eager/polymorphic_function/tracing_compiler.py", line 134, in __call__
+    return concrete_function._call_flat(
+  File "/usr/local/lib/python3.10/dist-packages/tensorflow/python/eager/polymorphic_function/monomorphic_function.py", line 1745, in _call_flat
+    return self._build_call_outputs(self._inference_function.call(
+  File "/usr/local/lib/python3.10/dist-packages/tensorflow/python/eager/polymorphic_function/monomorphic_function.py", line 378, in call
+    outputs = execute.execute(
+  File "/usr/local/lib/python3.10/dist-packages/tensorflow/python/eager/execute.py", line 52, in quick_execute
+    tensors = pywrap_tfe.TFE_Py_Execute(ctx._handle, device_name, op_name,
+KeyboardInterrupt

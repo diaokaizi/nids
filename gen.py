@@ -11,7 +11,7 @@ from sklearn.preprocessing import QuantileTransformer
 from sklearn.metrics import roc_curve, precision_recall_curve, accuracy_score, precision_score, recall_score, f1_score
 
 datasets = {
-    'NF-UNSW-NB15' : '/root/work/NIDS/data/NF-BoT-IoT.parquet',
+    'NF-UNSW-NB15' : '/root/work/NIDS/data/NF-UNSW-NB15.parquet',
 }
 
 features_to_remove = ['Attack', 'Label']

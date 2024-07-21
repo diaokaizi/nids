@@ -1,11 +1,11 @@
-2024-07-21 18:01:33.539413: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
+2024-07-21 18:16:38.670072: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
-2024-07-21 18:01:33.660277: I tensorflow/core/util/port.cc:104] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
-2024-07-21 18:01:33.663901: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
-2024-07-21 18:01:33.663923: I tensorflow/compiler/xla/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
-2024-07-21 18:01:34.676621: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
-2024-07-21 18:01:34.676681: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
-2024-07-21 18:01:34.676688: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
+2024-07-21 18:16:38.776709: I tensorflow/core/util/port.cc:104] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+2024-07-21 18:16:38.780016: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcudart.so.11.0'; dlerror: libcudart.so.11.0: cannot open shared object file: No such file or directory
+2024-07-21 18:16:38.780035: I tensorflow/compiler/xla/stream_executor/cuda/cudart_stub.cc:29] Ignore above cudart dlerror if you do not have a GPU set up on your machine.
+2024-07-21 18:16:39.344783: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer.so.7'; dlerror: libnvinfer.so.7: cannot open shared object file: No such file or directory
+2024-07-21 18:16:39.344862: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libnvinfer_plugin.so.7'; dlerror: libnvinfer_plugin.so.7: cannot open shared object file: No such file or directory
+2024-07-21 18:16:39.344869: W tensorflow/compiler/tf2tensorrt/utils/py_utils.cc:38] TF-TRT Warning: Cannot dlopen some TensorRT libraries. If you would like to use Nvidia GPU with TensorRT, please make sure the missing libraries mentioned above are installed properly.
 Processing NF-UNSW-NB15
 ====================
 
@@ -15,696 +15,88 @@ TESTING WITH GAN:
 Fitting and testing for NF-UNSW-NB15:
 ============================================================
 
-2024-07-21 18:01:36.681855: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
-2024-07-21 18:01:36.683029: W tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:265] failed call to cuInit: UNKNOWN ERROR (303)
-2024-07-21 18:01:36.683047: I tensorflow/compiler/xla/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (Ubuntu-2204): /proc/driver/nvidia/version does not exist
-2024-07-21 18:01:36.686383: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
+2024-07-21 18:16:44.032956: W tensorflow/compiler/xla/stream_executor/platform/default/dso_loader.cc:64] Could not load dynamic library 'libcuda.so.1'; dlerror: libcuda.so.1: cannot open shared object file: No such file or directory
+2024-07-21 18:16:44.032996: W tensorflow/compiler/xla/stream_executor/cuda/cuda_driver.cc:265] failed call to cuInit: UNKNOWN ERROR (303)
+2024-07-21 18:16:44.033011: I tensorflow/compiler/xla/stream_executor/cuda/cuda_diagnostics.cc:156] kernel driver does not appear to be running on this host (Ubuntu-2204): /proc/driver/nvidia/version does not exist
+2024-07-21 18:16:44.033202: I tensorflow/core/platform/cpu_feature_guard.cc:193] This TensorFlow binary is optimized with oneAPI Deep Neural Network Library (oneDNN) to use the following CPU instructions in performance-critical operations:  AVX2 AVX512F AVX512_VNNI FMA
 To enable them in other operations, rebuild TensorFlow with the appropriate compiler flags.
 0 INTRA-DATASET EVALUATION:
 
 	USING ROC-CURVE & Youden:
 
-		Accuracy=0.8201970443349754
-		Precision=0.9779806659505907
-		Recall=0.8347467338986936
-		F1=0.9007048349202424
+		Accuracy=0.8552820697089472
+		Precision=0.08708272859216255
+		Recall=0.2536997885835095
+		F1=0.12965964343598055
 
 	USING PR-CURVE & Distance:
 
-		Accuracy=0.9769368562472011
-		Precision=0.9769368562472011
-		Recall=1.0
-		F1=0.9007048349202424
+		Accuracy=0.08246496586417534
+		Precision=0.04349048645608773
+		Recall=0.9809725158562368
+		F1=0.12965964343598055
 
 20 INTRA-DATASET EVALUATION:
 
 	USING ROC-CURVE & Youden:
 
-		Accuracy=0.829153605015674
-		Precision=0.9779607010090281
-		Recall=0.8441439376575751
-		F1=0.9061385164226843
+		Accuracy=0.4310097017606899
+		Precision=0.04671307037896365
+		Recall=0.638477801268499
+		F1=0.08705678869991351
 
 	USING PR-CURVE & Distance:
 
-		Accuracy=0.9769368562472011
-		Precision=0.9769368562472011
-		Recall=1.0
-		F1=0.9061385164226843
+		Accuracy=0.05416816385195832
+		Precision=0.042659632526832816
+		Recall=0.9915433403805497
+		F1=0.08705678869991351
 
 40 INTRA-DATASET EVALUATION:
 
 	USING ROC-CURVE & Youden:
 
-		Accuracy=0.8197492163009404
-		Precision=0.9779688339602365
-		Recall=0.8342883337153335
-		F1=0.9004329004329004
+		Accuracy=0.42849443047071506
+		Precision=0.0481816786865122
+		Recall=0.6638477801268499
+		F1=0.08984263233190272
 
 	USING PR-CURVE & Distance:
 
-		Accuracy=0.9758172861621137
-		Precision=0.9769110065007846
-		Recall=0.9988539995415998
-		F1=0.9004329004329004
+		Accuracy=0.05138339920948617
+		Precision=0.0426226534868958
+		Recall=0.9936575052854123
+		F1=0.08984263233190272
 
 60 INTRA-DATASET EVALUATION:
 
 	USING ROC-CURVE & Youden:
 
-		Accuracy=0.848858038513211
-		Precision=0.9762396694214877
-		Recall=0.8663763465505386
-		F1=0.9180327868852459
+		Accuracy=0.43657923104563423
+		Precision=0.04899673355109659
+		Recall=0.6659619450317125
+		F1=0.09127789046653144
 
 	USING PR-CURVE & Distance:
 
-		Accuracy=0.9769368562472011
-		Precision=0.9769368562472011
-		Recall=1.0
-		F1=0.9180327868852459
+		Accuracy=0.05803090190441969
+		Precision=0.04307748471296888
+		Recall=0.9978858350951374
+		F1=0.09127789046653144
 
 80 INTRA-DATASET EVALUATION:
 
 	USING ROC-CURVE & Youden:
 
-		Accuracy=0.8363188535602328
-		Precision=0.976890756302521
-		Recall=0.8526243410497364
-		F1=0.9105372659405213
+		Accuracy=0.41933165648580667
+		Precision=0.04647993943981832
+		Recall=0.6490486257928119
+		F1=0.08674766883300368
 
 	USING PR-CURVE & Distance:
 
-		Accuracy=0.9769368562472011
-		Precision=0.9769368562472011
-		Recall=1.0
-		F1=0.9105372659405213
-
-100 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8627407075682938
-		Precision=0.9773421588594705
-		Recall=0.8798991519596607
-		F1=0.9260644071885177
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9769368562472011
-		Precision=0.9769368562472011
-		Recall=1.0
-		F1=0.9260644071885177
-
-120 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.7857142857142857
-		Precision=0.9838068181818181
-		Recall=0.793719917487967
-		F1=0.8785995179500191
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9738020600089565
-		Precision=0.9772931654676259
-		Recall=0.9963327985331194
-		F1=0.8785995179500191
-
-140 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8804299149126735
-		Precision=0.988019372928881
-		Recall=0.8883795553518221
-		F1=0.9355539464156409
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9811912225705329
-		Precision=0.9828481155495373
-		Recall=0.9981663992665597
-		F1=0.9355539464156409
-
-160 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8296014330497089
-		Precision=0.9947802197802198
-		Recall=0.8299335319734128
-		F1=0.9049106585030613
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9825347066726378
-		Precision=0.9835251636199503
-		Recall=0.9988539995415998
-		F1=0.9049106585030613
-
-180 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.580832960143305
-		Precision=0.9948351211760031
-		Recall=0.5739170295668118
-		F1=0.727906976744186
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9767129422301836
-		Precision=0.9775734469612021
-		Recall=0.9990831996332799
-		F1=0.727906976744186
-
-200 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8009404388714734
-		Precision=0.9808970099667774
-		Recall=0.8120559248223699
-		F1=0.888526645768025
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9769368562472011
-		Precision=0.9769368562472011
-		Recall=1.0
-		F1=0.888526645768025
-
-220 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9679802955665024
-		Precision=0.9797635288767622
-		Recall=0.987623195049278
-		F1=0.9836776623673096
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9767129422301836
-		Precision=0.9784318130757134
-		Recall=0.9981663992665597
-		F1=0.9836776623673096
-
-240 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.7819077474249888
-		Precision=0.9837282329431916
-		Recall=0.7898235159294064
-		F1=0.8761759471141621
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9800716524854456
-		Precision=0.9804406474820144
-		Recall=0.9995415998166399
-		F1=0.8761759471141621
-
-260 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.974473802060009
-		Precision=0.979679385865884
-		Recall=0.9944991977996791
-		F1=0.9870336669699726
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9791759964173757
-		Precision=0.9797752808988764
-		Recall=0.9993123997249599
-		F1=0.9870336669699726
-
-280 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9800716524854456
-		Precision=0.9804406474820144
-		Recall=0.9995415998166399
-		F1=0.9898989898989898
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9898989898989898
-
-300 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9334975369458128
-		Precision=0.9831273764258555
-		Recall=0.9482007792803118
-		F1=0.9653482674133707
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9798477384684281
-		Precision=0.9808687823542651
-		Recall=0.9988539995415998
-		F1=0.9653482674133707
-
-320 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9802955665024631
-		Precision=0.9802291619860706
-		Recall=1.0
-		F1=0.9900158838211935
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9900158838211935
-
-340 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.6298701298701299
-		Precision=0.9849677881173944
-		Recall=0.630758652303461
-		F1=0.769037306133855
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9793999104343932
-		Precision=0.9804274465691789
-		Recall=0.9988539995415998
-		F1=0.769037306133855
-
-360 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9632781012091357
-		Precision=0.9863331016909891
-		Recall=0.9759339903735962
-		F1=0.9811059907834101
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9793999104343932
-		Precision=0.9841305826343233
-		Recall=0.9949575979830392
-		F1=0.9811059907834101
-
-380 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8811016569637259
-		Precision=0.9835941443715295
-		Recall=0.8931927572771029
-		F1=0.9362162162162162
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9798477384684281
-		Precision=0.9804362491567349
-		Recall=0.9993123997249599
-		F1=0.9362162162162162
-
-400 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9798477384684281
-		Precision=0.9797889063552662
-		Recall=1.0
-		F1=0.9897912885662433
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9798477384684281
-		Precision=0.9797889063552662
-		Recall=1.0
-		F1=0.9897912885662433
-
-420 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9802955665024631
-		Precision=0.9804450438300741
-		Recall=0.99977079990832
-		F1=0.9900136177939174
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9800716524854456
-		Precision=0.9804406474820144
-		Recall=0.9995415998166399
-		F1=0.9900136177939174
-
-440 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.786833855799373
-		Precision=0.9813717188823031
-		Recall=0.7969287187714875
-		F1=0.8795851252213509
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.8795851252213509
-
-460 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.3618450515002239
-		Precision=0.989010989010989
-		Recall=0.3506761402704561
-		F1=0.5177664974619289
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.5177664974619289
-
-480 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-500 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-520 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-540 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9462606359158083
-		Precision=0.978639424193174
-		Recall=0.9660783864313546
-		F1=0.972318339100346
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9769368562472011
-		Precision=0.9769368562472011
-		Recall=1.0
-		F1=0.972318339100346
-
-560 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9164800716524855
-		Precision=0.9896907216494846
-		Recall=0.9241347696539078
-		F1=0.9557899727391252
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.980743394536498
-		Precision=0.985691573926868
-		Recall=0.9947283978913591
-		F1=0.9557899727391252
-
-580 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8526645768025078
-		Precision=0.9797979797979798
-		Recall=0.8670639468255787
-		F1=0.9199902723735409
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9798477384684281
-		Precision=0.9797889063552662
-		Recall=1.0
-		F1=0.9199902723735409
-
-600 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9798477384684281
-		Precision=0.9804362491567349
-		Recall=0.9993123997249599
-		F1=0.9901282196754795
-
-620 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-640 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9776085982982534
-		Precision=0.9801757152511827
-		Recall=0.9972495988998396
-		F1=0.9886389456941604
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9798477384684281
-		Precision=0.9802202742189255
-		Recall=0.9995415998166399
-		F1=0.9886389456941604
-
-660 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9901282196754795
-
-680 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.1903269144648455
-		Precision=0.9895150720838795
-		Recall=0.1730460692184277
-		F1=0.2945766679672259
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.2945766679672259
-
-700 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8307210031347962
-		Precision=0.9815754339118825
-		Recall=0.8425395370158149
-		F1=0.9067587567834238
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9805194805194806
-		Precision=0.9804494382022472
-		Recall=1.0
-		F1=0.9067587567834238
-
-720 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8240035826242723
-		Precision=0.9780807270783213
-		Recall=0.8386431354572542
-		F1=0.9030108588351432
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9767129422301836
-		Precision=0.9769316909294513
-		Recall=0.99977079990832
-		F1=0.9030108588351432
-
-740 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.024406627854903717
-		Precision=0.875
-		Recall=0.0016044006417602567
-		F1=0.003202928391672386
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9760412001791312
-		Precision=0.9769161810847153
-		Recall=0.9990831996332799
-		F1=0.003202928391672386
-
-760 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.7339901477832512
-		Precision=0.9751571385812631
-		Recall=0.7467338986935594
-		F1=0.8457943925233644
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9769368562472011
-		Precision=0.9769368562472011
-		Recall=1.0
-		F1=0.8457943925233644
-
-780 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8219883564711151
-		Precision=0.9775160599571735
-		Recall=0.837038734815494
-		F1=0.9018397333004075
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9767129422301836
-		Precision=0.9769316909294513
-		Recall=0.99977079990832
-		F1=0.9018397333004075
-
-800 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8233318405732198
-		Precision=0.977807486631016
-		Recall=0.8381847352738941
-		F1=0.9026286560533137
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9767129422301836
-		Precision=0.9769316909294513
-		Recall=0.99977079990832
-		F1=0.9026286560533137
-
-820 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.8231079265562025
-		Precision=0.9762729938683018
-		Recall=0.8393307357322943
-		F1=0.9026374168104511
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9767129422301836
-		Precision=0.9769316909294513
-		Recall=0.99977079990832
-		F1=0.9026374168104511
-
-840 INTRA-DATASET EVALUATION:
-
-	USING ROC-CURVE & Youden:
-
-		Accuracy=0.9733542319749217
-		Precision=0.9781433077963047
-		Recall=0.9949575979830392
-		F1=0.9864788092262243
-
-	USING PR-CURVE & Distance:
-
-		Accuracy=0.9751455441110614
-		Precision=0.9779676258992805
-		Recall=0.9970203988081595
-		F1=0.9864788092262243
+		Accuracy=0.05488681279195113
+		Precision=0.04285714285714286
+		Recall=0.9957716701902748
+		F1=0.08674766883300368
 

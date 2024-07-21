@@ -122,7 +122,7 @@ def give_threshold(model, method, val_data, y_val):
         distance = np.sqrt((1-precision)**2 + (1-recall)**2)
         return thresholds[distance.argmin()]
     
-    return;
+    return
 
 def evaluate(model, test_data, y_test, roc_threshold, pr_threshold):
     predictions = model.generator.predict(tf.random.normal(shape=(len(test_data), model.latent_dim)), verbose=0)
@@ -150,17 +150,17 @@ def fit_and_test_gan(name):
     gan = GAN(generator, discriminator, latent_dim)
     gan.compile()
 
-    epochs = 200
+    epochs = 10000
     batch_size = 128
     for epoch in range(epochs):
-        history = gan.fit(X_train, epochs=1, batch_size=batch_size)
+        history = gan.fit(X_train, epochs=1, batch_size=batch_size, verbose = False)
         
         if epoch % 20 == 0:
-        roc_threshold = give_threshold(gan, 'ROC', X_val, x_val[name][1])
-        pr_threshold = give_threshold(gan, 'PR', X_val, x_val[name][1])
+            roc_threshold = give_threshold(gan, 'ROC', X_val, x_val[name][1])
+            pr_threshold = give_threshold(gan, 'PR', X_val, x_val[name][1])
 
-        print('INTRA-DATASET EVALUATION:\n')
-        evaluate(gan, X_test, x_test[name][1], roc_threshold, pr_threshold)
+            print(epoch, 'INTRA-DATASET EVALUATION:\n')
+            evaluate(gan, X_test, x_test[name][1], roc_threshold, pr_threshold)
 
 print('TESTING WITH GAN:\n\n')
 for dataKey in datasets.keys():

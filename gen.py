@@ -45,7 +45,7 @@ for key, value in datasets.items():
 
 def build_generator(input_dim):
     model = tf.keras.Sequential()
-    model.add(Input(shape=(latent_dim,)))
+    model.add(Input(shape=(input_dim,)))
     model.add(Dense(8, activation='relu'))
     model.add(Dense(6, activation='relu'))
     model.add(Dense(4, activation='relu'))
@@ -156,7 +156,7 @@ def fit_and_test_gan(name):
     gan = GAN(generator, discriminator, input_dim)
     gan.compile()
 
-    epochs = 200
+    epochs = 5000
     batch_size = 128
     for epoch in range(epochs):
         gan.fit(X_train, epochs=1, batch_size=batch_size)

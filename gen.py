@@ -87,15 +87,15 @@ class GAN(tf.keras.Model):
         with tf.GradientTape() as tape:
             predictions_on_real = self.discriminator(real_data)
             predictions_on_fake = self.discriminator(generated_data)
-            d_loss_real = self.bce(tf.ones_like(predictions_on_real), predictions_on_real)
-            d_loss_fake = self.bce(tf.zeros_like(predictions_on_fake), predictions_on_fake)
+            d_loss_real = self.bce(tf.zeros_like(predictions_on_real), predictions_on_real)
+            d_loss_fake = self.bce(tf.ones_like(predictions_on_fake), predictions_on_fake)
             d_loss = (d_loss_real + d_loss_fake) / 2
 
         grads = tape.gradient(d_loss, self.discriminator.trainable_variables)
         self.d_optimizer.apply_gradients(zip(grads, self.discriminator.trainable_variables))
 
         # 训练生成器
-        misleading_labels = tf.ones((batch_size, 1))
+        misleading_labels = tf.zeros((batch_size, 1))
         with tf.GradientTape() as tape:
             predictions_on_fake = self.discriminator(self.generator(real_data))
             g_loss = self.bce(misleading_labels, predictions_on_fake)
@@ -161,7 +161,7 @@ def fit_and_test_gan(name):
     for epoch in range(epochs):
         gan.fit(X_train, epochs=1, batch_size=batch_size)
 
-        if epoch % 20 == 0:
+        if epoch % 2 == 0:
             roc_threshold = give_threshold(gan, 'ROC', X_val, x_val[name][1])
             pr_threshold = give_threshold(gan, 'PR', X_val, x_val[name][1])
 

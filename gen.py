@@ -9,6 +9,7 @@ from tensorflow.keras.callbacks import EarlyStopping
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import QuantileTransformer
 from sklearn.metrics import roc_curve, precision_recall_curve, accuracy_score, precision_score, recall_score, f1_score
+from imblearn.over_sampling import SMOTE
 
 datasets = {
     'NF-UNSW-NB15' : '/root/work/NIDS/data/NF-UNSW-NB15.parquet',
@@ -33,9 +34,16 @@ for key, value in datasets.items():
     gc.collect()
     X_val, X_test, y_val, y_test = train_test_split(X_test, X_test.Label, test_size=0.15, stratify=X_test.Attack, random_state=42)
     X_train = X_train[X_train.Label==0].drop(columns=features_to_remove, axis=1)
+    y_train = y_train[X_train.index]
     X_val.drop(columns=features_to_remove, axis=1, inplace=True)
     X_test.drop(columns=features_to_remove, axis=1, inplace=True)
-    x_train[key] = X_train
+
+    smote = SMOTE(random_state=42)
+    print(X_train)
+    X_train_resampled, y_train_resampled = smote.fit_resample(X_train, y_train)
+    print(X_train_resampled)
+
+    x_train[key] = X_train_resampled
     x_val[key] = (X_val, y_val)
     x_test[key] = (X_test, y_test)
     del X_train

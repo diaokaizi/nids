@@ -26,6 +26,15 @@ for key, value in datasets.items():
     print(f'Processing {key}')
     print('='*20 + '\n')
     df = pd.read_parquet(value)
+    df['total_bytes'] = df['IN_BYTES'] + df['OUT_BYTES']
+    df['total_packets'] = df['IN_PKTS'] + df['OUT_PKTS']
+    df['bytes_per_packet'] = df['total_bytes'] / df['total_packets']
+    df['log_duration'] = np.log(df['FLOW_DURATION_MILLISECONDS'] + 1)
+    df['in_out_bytes_ratio'] = df['IN_BYTES'] / (df['OUT_BYTES'] + 1)
+    df['in_out_packets_ratio'] = df['IN_PKTS'] / (df['OUT_PKTS'] + 1)
+    df['bytes_per_millisecond'] = df['total_bytes'] / (df['FLOW_DURATION_MILLISECONDS'] + 1)
+    df['packets_per_millisecond'] = df['total_packets'] / (df['FLOW_DURATION_MILLISECONDS'] + 1)
+
     Y = df.Label
     X_train, X_test, y_train, y_val = train_test_split(df, Y, test_size=0.05,stratify=df.Attack, random_state=42)
     del df
@@ -36,16 +45,6 @@ for key, value in datasets.items():
     y_train = y_train[X_train.index]
     X_val.drop(columns=features_to_remove, axis=1, inplace=True)
     X_test.drop(columns=features_to_remove, axis=1, inplace=True)
-
-    df['total_bytes'] = df['IN_BYTES'] + df['OUT_BYTES']
-    df['total_packets'] = df['IN_PKTS'] + df['OUT_PKTS']
-    df['bytes_per_packet'] = df['total_bytes'] / df['total_packets']
-    df['log_duration'] = np.log(df['FLOW_DURATION_MILLISECONDS'] + 1)
-    df['in_out_bytes_ratio'] = df['IN_BYTES'] / (df['OUT_BYTES'] + 1)
-    df['in_out_packets_ratio'] = df['IN_PKTS'] / (df['OUT_PKTS'] + 1)
-    df['bytes_per_millisecond'] = df['total_bytes'] / (df['FLOW_DURATION_MILLISECONDS'] + 1)
-    df['packets_per_millisecond'] = df['total_packets'] / (df['FLOW_DURATION_MILLISECONDS'] + 1)
-
     x_train[key] = X_train
     x_val[key] = (X_val, y_val)
     x_test[key] = (X_test, y_test)

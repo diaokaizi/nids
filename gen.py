@@ -37,12 +37,16 @@ for key, value in datasets.items():
     X_val.drop(columns=features_to_remove, axis=1, inplace=True)
     X_test.drop(columns=features_to_remove, axis=1, inplace=True)
 
-    print(X_train)    
-    repeat_factor = 10  # 设置扩充倍数，根据需要调整
-    X_train_resampled = pd.concat([X_train] * repeat_factor, ignore_index=True)
-    print(X_train_resampled)
+    df['total_bytes'] = df['IN_BYTES'] + df['OUT_BYTES']
+    df['total_packets'] = df['IN_PKTS'] + df['OUT_PKTS']
+    df['bytes_per_packet'] = df['total_bytes'] / df['total_packets']
+    df['log_duration'] = np.log(df['FLOW_DURATION_MILLISECONDS'] + 1)
+    df['in_out_bytes_ratio'] = df['IN_BYTES'] / (df['OUT_BYTES'] + 1)
+    df['in_out_packets_ratio'] = df['IN_PKTS'] / (df['OUT_PKTS'] + 1)
+    df['bytes_per_millisecond'] = df['total_bytes'] / (df['FLOW_DURATION_MILLISECONDS'] + 1)
+    df['packets_per_millisecond'] = df['total_packets'] / (df['FLOW_DURATION_MILLISECONDS'] + 1)
 
-    x_train[key] = X_train_resampled
+    x_train[key] = X_train
     x_val[key] = (X_val, y_val)
     x_test[key] = (X_test, y_test)
     del X_train
@@ -53,11 +57,15 @@ for key, value in datasets.items():
 def build_generator(input_dim):
     model = tf.keras.Sequential()
     model.add(Input(shape=(input_dim,)))
+    model.add(Dense(16, activation='relu'))
+    model.add(Dense(14, activation='relu'))
+    model.add(Dense(12, activation='relu'))
+    model.add(Dense(10, activation='relu'))
     model.add(Dense(8, activation='relu'))
-    model.add(Dense(6, activation='relu'))
-    model.add(Dense(4, activation='relu'))
-    model.add(Dense(6, activation='relu'))
-    model.add(Dense(8, activation='relu'))
+    model.add(Dense(10, activation='relu'))
+    model.add(Dense(12, activation='relu'))
+    model.add(Dense(14, activation='relu'))
+    model.add(Dense(16, activation='relu'))
     model.add(Dense(input_dim, activation='linear'))
     return model
 
